@@ -1,9 +1,13 @@
 #include "ScalarConverter.hpp"
 
-int main()
+int main(int argc, char **argv)
 {
+    (void)argc;
+    // if (argc != 1)
+        // return 0;
+    std::string ar = static_cast<std::string>(argv[1]);
     ScalarConverter obj;
-    obj.convert("1");
+    obj.convert(ar);
 }
 
 /*
@@ -25,10 +29,16 @@ si la conversion n'est pas affichable ecrit un message d'information
 Examples of int literals: 0, -42, 42...
 Examples of float literals: 0.0f, -4.2f, 4.2f...
 vous devez gerer ces different pseudo literals
--inff, +inff, nanf(not a number)
+
+-inff
++inff
+nanf(not a number)
 
 Examples of double literals: 0.0, -4.2, 4.2...
-inf, +inf and nan
+
+inf
++inf
+nan
 
 premierement je dois detecter le type passer en parametre, le convertir
 de la string jusqu'a son type, apres le convertir explicitement vers les
