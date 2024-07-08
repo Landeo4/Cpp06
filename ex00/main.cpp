@@ -6,8 +6,7 @@ int main(int argc, char **argv)
     // if (argc != 1)
         // return 0;
     std::string ar = static_cast<std::string>(argv[1]);
-    ScalarConverter obj;
-    obj.convert(ar);
+    ScalarConverter::convert(ar);
 }
 
 /*
