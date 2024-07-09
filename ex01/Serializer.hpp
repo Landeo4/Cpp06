@@ -8,7 +8,7 @@
 
 struct Data
 {
-    int i;
+    int *i;
 };
 
 class Serializer
