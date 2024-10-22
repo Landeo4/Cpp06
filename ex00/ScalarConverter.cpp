@@ -31,17 +31,19 @@ void ScalarConverter::convert(std::string str)
     double db;
     float ft;
 
-    std::cout << "voici input" << str << std::endl;
+    // std::cout << "voici input" << str << std::endl;
     std::istringstream(str) >> it;
     std::stringstream(str) >> db;
     ft = static_cast<float>(db);
     int last = tmp.find(str);
     std::cout << last << std::endl;
     // verification du char
-    if (last == -1)
-        std::cout << "char: impossible" << std::endl;
-    else if (str[0] >= 48 && str[0] <= 57)
+    if (str[0] >= 90 && str[0] <= 65)
+        std::cout << "jepasseici";
+    if (str[0] >= 48 && str[0] <= 57)
         std::cout << "char : Non displayable" << std::endl;
+    else if (last == -1 || (str.length() > 1 && str[0] <= 48 && str[0] >= 57))
+        std::cout << "char: impossible" << std::endl;
     else if (std::isprint(cr) != 0)
         std::cout << "char: " << cr << std::endl;
     //verification du int

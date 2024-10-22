@@ -3,8 +3,8 @@
 int main(int argc, char **argv)
 {
     (void)argc;
-    // if (argc != 1)
-        // return 0;
+    if (argc != 2)
+        return 0;
     std::string ar = static_cast<std::string>(argv[1]);
     ScalarConverter::convert(ar);
 }
