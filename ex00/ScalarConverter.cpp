@@ -22,6 +22,7 @@ ScalarConverter::~ScalarConverter()
 
 }
 
+
 void ScalarConverter::convert(std::string str)
 {
     std::string test = " +inff";
@@ -37,15 +38,23 @@ void ScalarConverter::convert(std::string str)
     ft = static_cast<float>(db);
     int last = tmp.find(str);
     std::cout << last << std::endl;
+
     // verification du char
-    if (str[0] >= 90 && str[0] <= 65)
-        std::cout << "jepasseici";
-    if (str[0] >= 48 && str[0] <= 57)
+    int stop = str.find(".");
+    if (str == "-inff" || str == "+inff" || str == "nan" || str == "nanf" || str == "-inf"
+        || str == "+inf")
+    {
+        std::cout << "char : impossible" << std::endl;
+    }
+    else if (stop == 1)
+        std::cout << "char: " << '*' << std::endl;
+    else if (str[0] >= 48 && str[0] <= 57)
         std::cout << "char : Non displayable" << std::endl;
-    else if (last == -1 || (str.length() > 1 && str[0] <= 48 && str[0] >= 57))
-        std::cout << "char: impossible" << std::endl;
     else if (std::isprint(cr) != 0)
         std::cout << "char: " << cr << std::endl;
+    // else if (last == -1 || (str.length() > 1 && str[0] <= 48 && str[0] >= 57))
+        // std::cout << "char: impossible" << std::endl;
+
     //verification du int
 
     if (last != -1)
@@ -53,37 +62,43 @@ void ScalarConverter::convert(std::string str)
 	else
 		std::cout << "int: " << it << std::endl;
 
-    int stop = str.find(".");
+    //verif du float
+    // std::cout << "voici last " << last << " et lost " << stop << std::endl;
     if (last != -1)
     {
-        std::cout << "float: ";
-        while (tmp[last] != ' ')
-        {
-            std::cout << tmp[last];
-            last++;
-        }
-        std::cout << std::endl;
+        if (str == "nan")
+            std::cout << "float: nanf" << std::endl;
+        else if (str == "-inf")
+            std::cout << "float: -inff" << std::endl;
+        else if (str == "+inf")
+            std::cout << "float: +inff" << std::endl;
+        else
+            std::cout << "float: " << str << std::endl;
     }
-    else if (stop == -1)
+    else
         std::cout << "float: " << ft << ".0f"<< std::endl;
-    else
-        std::cout << "float: " << ft << "f" << std::endl;
+    // else if (stop != -1)
+    // else
+        // std::cout << "float: " << ft << "f" << std::endl;
 
+    //verif du double
     last = tmp.find(str);
+    // std::cout << "voici last " << last << " et lost " << stop << std::endl;
     if (last != -1)
     {
-        std::cout << "double: ";
-        while (tmp[last] != ' ')
-        {
-            std::cout << tmp[last];
-            last++;
-        }
-        std::cout << std::endl;
+        if (str == "nanf")
+            std::cout << "double: nan" << std::endl;
+        else if (str == "-inff")
+            std::cout << "double: -inf" << std::endl;
+        else if (str == "+inff")
+            std::cout << "double: +inf" << std::endl;
+        else
+            std::cout << "double: " << str << std::endl;
     }
-    else if (stop == -1)
-        std::cout << "double: " << db << ".0"<< std::endl;
     else
-        std::cout << "double: " << db << std::endl;
+        std::cout << "double: " << db << ".0"<< std::endl;
+    // else if (stop == -1)
+        // std::cout << "double: " << db << std::endl;
     // std::cout << "double: " << db << std::endl;
 }
 
