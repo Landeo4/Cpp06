@@ -22,6 +22,27 @@ ScalarConverter::~ScalarConverter()
 
 }
 
+void ScalarConverter::convert(std::string str)
+{
+    char c = str[0];
+    int it;
+    double db;
+    float ft;
+
+    if (str.find(".") == 0)
+    {
+        if (str.find("f") == 0)
+            std::istringstream(str) >> ft;
+        else
+            std::istringstream(str) >> db;
+    }
+    else if (str.find(""))
+    {
+
+    }
+    db = static_cast<float>(it);
+    ft = static_cast<float>(db);
+}
 
 void ScalarConverter::convert(std::string str)
 {

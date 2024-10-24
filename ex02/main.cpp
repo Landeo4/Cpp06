@@ -22,10 +22,9 @@ Base* generate(void)
     return obj;
 }
 
-// cree au hazard A B ou C et retourne l'instance en pointeur BAse
-// le hasard doit etre fait comme on veut
 void identify(Base* p)
 {
+    
     A *a = dynamic_cast<A*>(p);
     if (a != NULL)
     {
@@ -46,7 +45,6 @@ void identify(Base* p)
     }
     std::cout << "no type detected" << std::endl;
 }
-// print le type actuel de l'objet pointer
 
 void identify(Base& p)
 {
@@ -88,17 +86,12 @@ void identify(Base& p)
     std::cout << "no type detected" << std::endl;
 }
 
-// print le type de l'objet pointer
-// utiliser un pointeur dans cette fonction est interdit
-
 int main()
 {
     Base *sa = NULL;
     sa = generate();
     identify(sa);
-    Base *sq;
-    sq = generate();
-    identify(sq);
+    Base *sq = generate();
+    identify(*sq);
     delete sa;
-    delete sq;
 }
