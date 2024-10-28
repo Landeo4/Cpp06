@@ -4,9 +4,40 @@ int main(int argc, char **argv)
 {
     if (argc != 2)
         return 0;
-    // std::string ar = static_cast<std::string>(argv[1]);
     std::string ar = std::string(argv[1]);
     ScalarConverter::convert(ar);
+}
+
+// je dois check s'il y a un char seul ou un nombre seul (seul exception -)
+
+bool parsing(std::string str, int check_part)
+{
+    if (check_part == 1)
+        return 0;
+    int i = 0;
+    int check = 0;
+    int tmp = 0;
+    while (str[i])
+    {
+        if (isalpha(str[i]) && tmp <= 1)
+        {
+            if (tmp == 1)
+                return 1;
+            if (str[i] == 'f')
+                tmp = 1;
+            else if (check == 1 || check == 2)
+                return 1;
+            check = 1;
+        }
+        else if (str[i] >= 48 && str[i] <= 57)
+        {
+            if (check == 1)
+                return 1;
+            check = 2;
+        }
+        i++;
+    }
+    return 0;
 }
 
 /*

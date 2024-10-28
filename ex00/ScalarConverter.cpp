@@ -34,12 +34,17 @@ void ScalarConverter::convert(std::string str)
     int check_part = 0;
     (void)c;
 
-    std::cout << "voici ce que find trouve " << str.find(".") << " ";
     if (str == "-inff" || str == "+inff" || str == "nan" || str == "nanf" || str == "-inf"
         || str == "+inf")
         check_part = 1;
+    if (parsing(str, check_part) == 1)
+    {
+        std::cout << "Wrong input" << std::endl;
+        return ;
+    }
     if (str.find(".") < str.size())
     {
+        std::cout << "je passe par premier if" << std::endl;
         if (str.find("f") < str.size())
         {
             flag = 1;
@@ -55,17 +60,19 @@ void ScalarConverter::convert(std::string str)
             ft = static_cast<double>(db);
             it = static_cast<int>(db);
         }
+        c = str[0];
     }
-    else if (str[0] >= 48 && str[0] <= 57)
+    else if ((str[0] >= 48 && str[0] <= 57) || (str[0] >= 48 && str[0] <= 57) || str[0] == '-')
     {
         std::cout << "int" << std::endl;
         std::istringstream(str) >> it;
         db = static_cast<float>(it);
         ft = static_cast<double>(it);
+        c = str[0];
     }
     else
     {
-        std::cout << "char" << std::endl;
+        std::cout << "je suis char" << std::endl;
         c = str[0];
         it = static_cast<int>(c);
         db = static_cast<double>(c);
@@ -74,12 +81,17 @@ void ScalarConverter::convert(std::string str)
     int last = tmp.find(str);
     std::cout << last << std::endl;
 
-    // pour les char
+    int sb = atoi(str.c_str());
 
-    if (check_part == 1)
-    {
+    if (check_part == 1 || sb <= 0 || sb >= 127)
         std::cout << "char: impossible" << std::endl;
-    }
+    else if (sb >= 0 && sb <= 127 && !isprint(sb))
+        std::cout << "char: Non displayable" << std::endl;
+    else if (str.size() < 2 && !isdigit(c))
+        std::cout << "char: " << static_cast<int>(c) << std::endl;
+    else 
+        std::cout << "char: " << static_cast<char>(atoi((str.c_str()))) << std::endl;
+    // pour les char
 
     // pour les int
 
@@ -90,26 +102,41 @@ void ScalarConverter::convert(std::string str)
 
     // pour les float
 
-    if (str == "nan")
+    if (str == "nan" || str == "nanf")
         std::cout << "float: nanf" << std::endl;
-    else if (str == "-inf")
+    else if (str == "-inf" || str == "-inff")
         std::cout << "float: -inff" << std::endl;
-    else if (str == "+inf")
+    else if (str == "+inf" || str == "+inff")
         std::cout << "float: +inff" << std::endl;
-    if (flag == 1)
+    else if (flag == 1 && (str.find(".") < str.size() && str.find(".0") > str.size()))
         std::cout << "float: " << ft << "f" << std::endl;
     else
         std::cout << "float: " << ft <<  ".0f" << std::endl;
 
     // pour les double
-    if (str == "nanf")
+    if (str == "nanf" || str == "nan")
         std::cout << "double: nan" << std::endl;
-    else if (str == "-inff")
+    else if (str == "-inff" || str == "-inf")
         std::cout << "double: -inf" << std::endl;
-    else if (str == "+inff")
+    else if (str == "+inff" || str == "+inf")
         std::cout << "double: +inf" << std::endl;
     else
-        std::cout << "double: " << db << std::endl;
+    {
+        // if (str.find(".") < str.size() && str.find(".0") > str.size())
+        int pos = str.find(".");
+        if (pos + 1 > str.size())
+            std::cout << "double: " << db << ".0" << std::endl;
+        else
+            std::cout << "double: " << db << std::endl;
+
+    }
+
+    // else if (str.find(".") < str.size())
+    // {
+    //     std::cout << "double: " << db << std::endl;
+    // }
+    // else
+    //     std::cout << "double: " << db << ".0" << std::endl;
 }
 
 // void ScalarConverter::convert(std::string str)

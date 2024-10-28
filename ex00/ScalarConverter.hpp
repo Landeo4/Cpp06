@@ -17,4 +17,6 @@ class ScalarConverter
     ScalarConverter & operator=(const ScalarConverter & copy);
 };
 
+bool parsing(std::string str, int check_part);
+
 #endif
