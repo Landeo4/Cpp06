@@ -123,12 +123,11 @@ void ScalarConverter::convert(std::string str)
     else
     {
         // if (str.find(".") < str.size() && str.find(".0") > str.size())
-        int pos = str.find(".");
-        if (pos + 1 > str.size())
+        size_t pos = str.find(".");
+        if (pos + 1 > str.size() && str.find(".0"))
             std::cout << "double: " << db << ".0" << std::endl;
         else
             std::cout << "double: " << db << std::endl;
-
     }
 
     // else if (str.find(".") < str.size())

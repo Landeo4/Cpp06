@@ -14,11 +14,12 @@ bool parsing(std::string str, int check_part)
 {
     if (check_part == 1)
         return 0;
-    int i = 0;
+    size_t i = 0;
     int check = 0;
     int tmp = 0;
     while (str[i])
     {
+        // si lettre
         if (isalpha(str[i]) && tmp <= 1)
         {
             if (tmp == 1)
@@ -31,6 +32,7 @@ bool parsing(std::string str, int check_part)
         }
         else if (str[i] >= 48 && str[i] <= 57)
         {
+            // si nb
             if (check == 1)
                 return 1;
             check = 2;
@@ -39,6 +41,10 @@ bool parsing(std::string str, int check_part)
     }
     return 0;
 }
+
+// 30.f
+//42..
+//2.0f
 
 /*
 je dois:
