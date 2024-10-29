@@ -20,7 +20,7 @@ bool parsing(std::string str, int check_part)
     while (str[i])
     {
         // si lettre
-        if (isalpha(str[i]) && tmp <= 1)
+        if ((isalpha(str[i]) || (str[i] == '.' && i + 1 == str.size())) && tmp <= 1)
         {
             if (tmp == 1)
                 return 1;
@@ -28,6 +28,21 @@ bool parsing(std::string str, int check_part)
                 tmp = 1;
             else if (check == 1 || check == 2)
                 return 1;
+            size_t t = str.find(".");
+            if (t <= str.size() && (str[t + 1] <= 48 && str[t + 1] >= 57))
+                return 1;
+            else if (t <= str.size())
+            {
+                while (str[t])
+                {
+                    if (str[t] >= 48 && str[t] <= 57)
+                        t++;
+                    if (str[t] == 'f' && (str[t - 1] >= 48 && str[t - 1] <= 57))
+                        return 0;
+                    t++;
+                }
+                return 1;
+            }
             check = 1;
         }
         else if (str[i] >= 48 && str[i] <= 57)
