@@ -19,6 +19,16 @@ bool parsing(std::string str, int check_part)
     int tmp = 0;
     while (str[i])
     {
+        if (tmp == 1)
+            return 1;
+        if (isalpha(str[i]))
+            tmp = 1;
+        i++;
+    }
+    i = 0;
+    tmp = 0;
+    while (str[i])
+    {
         // si lettre
         if ((isalpha(str[i]) || (str[i] == '.' && i + 1 == str.size())) && tmp <= 1)
         {
