@@ -102,26 +102,39 @@ void ScalarConverter::convert(std::string str)
 
     // pour les float
 
+    size_t dot = 0, f = 0;
+    dot = str.find(".");
+    std::cout << "str + 1 " << str[dot + 1] << std::endl;
+    if (dot < str.size())
+    {
+        if ((str[dot + 1] > 48 && str[dot + 1] <= 57) && dot + 2 < str.size())
+            f = 1;
+    }
+    std::cout << "voici f " << f << " ";
     if (str == "nan" || str == "nanf")
         std::cout << "float: nanf" << std::endl;
     else if (str == "-inf" || str == "-inff")
         std::cout << "float: -inff" << std::endl;
     else if (str == "+inf" || str == "+inff")
         std::cout << "float: +inff" << std::endl;
+    else if (f == 1)
+        std::cout << "float: " << ft <<  "f" << std::endl;
     else
-    {
-        size_t pos = str.find(".");
-        // std::cout << pos;
-        if ((pos + 1 >= str.size() || pos >= str.size()) || ((str[pos + 1] == 'f' && pos + 2 >= str.size()) || (str[pos + 1] == '0')))
-        {
-            if (((str[pos + 2] <= 48 && str[pos + 2] >= 57) || str[pos + 2] == 'f') || pos > str.size())
-                std::cout << "float: " << ft <<  ".0f" << std::endl;
-            else
-                std::cout << "float: " << ft <<  "f" << std::endl;
-        }
-        else
-            std::cout << "float: " << ft <<  "f" << std::endl;
-    }
+        std::cout << "float: " << ft <<  ".0f" << std::endl;
+    // else
+    // {
+        // size_t pos = str.find(".");
+        // // std::cout << pos;
+        // if ((pos + 1 >= str.size() || pos >= str.size()) || ((str[pos + 1] == 'f' && pos + 2 >= str.size()) || (str[pos + 1] == '0')))
+        // {
+        //     if (((str[pos + 2] <= 48 && str[pos + 2] >= 57) || str[pos + 2] == 'f') || pos > str.size())
+        //         std::cout << "float: " << ft <<  ".0f" << std::endl;
+        //     else
+        //         std::cout << "float: " << ft <<  "f" << std::endl;
+        // }
+        // else
+        //     std::cout << "float: " << ft <<  "f" << std::endl;
+    // }
 
     // pour les double
     if (str == "nanf" || str == "nan")
