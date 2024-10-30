@@ -17,12 +17,19 @@ bool parsing(std::string str, int check_part)
     size_t i = 0;
     int check = 0;
     int tmp = 0;
+    int tmp2 = 0;
     while (str[i])
     {
         if (tmp == 1)
             return 1;
         if (isalpha(str[i]))
             tmp = 1;
+        else if (str[i] == '.')
+        {
+            if (tmp2 == 1)
+                return 1;
+            tmp2 = 1;
+        }
         i++;
     }
     i = 0;

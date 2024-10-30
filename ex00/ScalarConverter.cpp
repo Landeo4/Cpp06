@@ -124,24 +124,24 @@ void ScalarConverter::convert(std::string str)
         std::cout << "float: +inff" << std::endl;
     if (f < str.size())
     {
-        std::cout << "je passe par tous les f" << std::endl;
         if (dot >= str.size()) //45.0f
-            std::cout << "float: " << ft <<  ".0f" << std::endl;
+            std::cout << "float: " << ft <<  ".0f" << std::endl << "double: " << db <<  ".0" << std::endl;
         else if (str[f - 1] == '0' && f - 2 == dot) // 45f
-            std::cout << "float: " << ft <<  ".0f" << std::endl;
+            std::cout << "float: " << ft <<  ".0f" << std::endl << "double: " << db <<  ".0" << std::endl;
         else if (dot + 1 != '0') // 45.45f
-            std::cout << "float: " << ft <<  "f" << std::endl;
+            std::cout << "float: " << ft << "f" << std::endl << "double: " << db << std::endl;
         // tous les f
     }
     else
     {
         std::cout << "je passe par le reste " << std::endl;// 45
         if (f >= str.size() && dot >= str.size())
-            std::cout << "float: " << ft <<  ".0f" << std::endl;
+            std::cout << "float: " << ft <<  ".0f" << std::endl << "double: " << db <<  ".0" << std::endl;
         else if (str[dot + 1] == '0' && dot + 2 == str.size()) // 45.0
-            std::cout << "float: " << ft <<  ".0f" << std::endl;
-        else if (dot + 2 < str.size() && (str[dot + 2] != '0' && str[dot + 2] != 'f')) // 45.04
-            std::cout << "float: " << ft <<  "f" << std::endl;
+            std::cout << "float: " << ft <<  ".0f" << std::endl << "double: " << db <<  ".0" << std::endl;
+        else
+            std::cout << "float: " << ft << "f" << std::endl << "double: " << db << std::endl;
+        //  if (dot + 2 < str.size() && (str[dot + 2] != '0' && str[dot + 2] != 'f')) // 45.04
         // le reste
     }
     // 45.0
@@ -176,19 +176,19 @@ void ScalarConverter::convert(std::string str)
         std::cout << "double: -inf" << std::endl;
     else if (str == "+inff" || str == "+inf")
         std::cout << "double: +inf" << std::endl;
-    else
-    {
-        size_t pos = str.find(".");
-        if ((pos + 1 >= str.size() || pos >= str.size()) || ((str[pos + 1] == 'f' && pos + 2 >= str.size()) || (str[pos + 1] == '0')))
-        {
-            if (((str[pos + 2] <= 48 && str[pos + 2] >= 57) || str[pos + 2] == 'f') || pos > str.size())
-                std::cout << "double: " << ft <<  ".0" << std::endl;
-            else
-                std::cout << "double: " << ft << std::endl;
-        }
-        else
-            std::cout << "double: " << ft << std::endl;
-    }
+    // else
+    // {
+    //     size_t pos = str.find(".");
+    //     if ((pos + 1 >= str.size() || pos >= str.size()) || ((str[pos + 1] == 'f' && pos + 2 >= str.size()) || (str[pos + 1] == '0')))
+    //     {
+    //         if (((str[pos + 2] <= 48 && str[pos + 2] >= 57) || str[pos + 2] == 'f') || pos > str.size())
+    //             std::cout << "double: " << ft <<  ".0" << std::endl;
+    //         else
+    //             std::cout << "double: " << ft << std::endl;
+    //     }
+    //     else
+    //         std::cout << "double: " << ft << std::endl;
+    // }
 
     // else if (str.find(".") < str.size())
     // {
