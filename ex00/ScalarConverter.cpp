@@ -33,7 +33,6 @@ void ScalarConverter::convert(std::string str)
     int flag = 0;
     int check_part = 0;
     (void)c;
-
     if (str.length() == 1 && !isdigit(str[0]))
     {
         // gerer l'affichage.

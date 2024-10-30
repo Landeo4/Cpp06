@@ -3,7 +3,10 @@
 int main(int argc, char **argv)
 {
     if (argc != 2)
+    {
+        std::cout << "wrong argument" << std::endl;
         return 0;
+    }
     std::string ar = std::string(argv[1]);
     ScalarConverter::convert(ar);
 }
