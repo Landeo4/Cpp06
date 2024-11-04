@@ -39,7 +39,6 @@ bool parsing(std::string str, int check_part)
     tmp = 0;
     while (str[i])
     {
-        // si lettre
         if ((isalpha(str[i]) || (str[i] == '.' && i + 1 == str.size())) && tmp <= 1)
         {
             if (tmp == 1)
@@ -67,7 +66,6 @@ bool parsing(std::string str, int check_part)
         }
         else if (str[i] >= 48 && str[i] <= 57)
         {
-            // si nb
             if (check == 1)
                 return 1;
             check = 2;
